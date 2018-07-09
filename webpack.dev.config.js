@@ -17,6 +17,21 @@ module.exports = {
                 use: ['babel-loader'],
                 include: path.join(__dirname , 'src'),
                 exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+                include: path.join(__dirname , 'src'),
+                exclude: /node_modules/
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192 // 8k
+                    }
+                }]
             }
         ]
     },
@@ -26,6 +41,7 @@ module.exports = {
         port: 9090,
         // hot: true
     },
+    devtool: 'inline-source-map',
     // plugins:[
     //     new webpack.HotModuleReplacementPlugin()
     // ]
